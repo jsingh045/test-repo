@@ -88,7 +88,7 @@ run_loop() {
       echo "$(date '+%Y-%m-%dT%H:%M:%S') [$branch] push #$i FAILED" >&2
       failed=$(( failed + 1 ))
     fi
-    (( i < pushes )) && sleep "$interval"
+    (( i < pushes )) && (( interval > 0 )) && sleep "$interval"
   done
   echo "[$branch] done ($pushes pushes, $failed failed)"
   (( failed == 0 ))   # propagate a non-zero exit if any push failed
